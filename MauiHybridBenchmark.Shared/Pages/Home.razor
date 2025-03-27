@@ -1,7 +1,132 @@
-﻿@page "/"
+﻿@using System.Text.Json;
+@using System.Diagnostics;
+@using System.Timers;
+@using System.Globalization
 
-<PageTitle>Home</PageTitle>
+@page "/"
 
-<h1>Hello, world!</h1>
+@if (_items != null)
+{
+    <svg style="width: 3600px; height: 30px;">
+        @{
+            DateTime end = new DateTime(2025, 2, 26);
+            DateTime start = end.AddDays(-_days);
+            double totalSeconds = (end - start).TotalSeconds;
 
-Welcome to your new app.
+            <g>
+                <rect
+                    x="0%"
+                    y="0%"
+                    width="100%"
+                    height="100%"
+                    fill="gray"
+                />
+            </g>
+
+            double currentPosition = 0;
+            double currentWidth = 0;
+
+            <g>
+                @for (int i = _items.Count - 1; i >= 0; i--)
+                {
+                    Item? previous = i + 1 < _items.Count ? _items[i + 1] : null;
+                    Item? current = _items[i];
+                    Item? next = i - 1 >= 0 ? _items[i - 1] : null;
+
+                    if (next != null && next.Time < start)
+                    {
+                        continue;
+                    }
+
+                    if (current.Time < start)
+                    {
+                        currentPosition = 0;
+                        currentWidth = (next == null) ? 100 : (next.Time - start).TotalSeconds / totalSeconds * 100;
+                    }
+                    else
+                    {
+                        currentPosition = (current.Time - start).TotalSeconds / totalSeconds * 100;
+                        currentWidth = (next == null) ? 100 - currentPosition : (next.Time - current.Time).TotalSeconds / totalSeconds * 100;
+                    }
+
+                    <rect
+                        style="z-index: @(currentWidth < 0.3164 && current.Status != next?.Status && current.Status != previous?.Status ? 1 : 0)"
+                        x="@currentPosition.ToString(CultureInfo.InvariantCulture)%"
+                        y="0%"
+                        width="@currentWidth.ToString(CultureInfo.InvariantCulture)%"
+                        height="100%"
+                        fill="@GetColor(current.Status)"
+                        stroke="@GetColor(current.Status)"
+                        stroke-width="@(currentWidth < 0.3164 && current.Status != next?.Status && current.Status != previous?.Status ? "0.6328%" : "0.3164%")"
+                    />
+                }
+            </g>
+        }
+    </svg>
+}
+
+@foreach (string message in _messages)
+{
+    <div>@message</div>
+}
+
+@code {
+
+    private List<Item>? _items;
+
+    private List<string> _messages = [];
+
+    private int _days = 1;
+
+    private Timer _timer = new Timer(10000);
+
+    private Stopwatch _stopwatch = new Stopwatch();
+
+    protected override async Task OnInitializedAsync()
+    {
+        _items = JsonSerializer.Deserialize<List<Item>>(ItemsJson.Json, new JsonSerializerOptions() { PropertyNameCaseInsensitive = true });
+        _timer.Elapsed += Elapsed;
+        _timer.Start();
+        _stopwatch.Restart();
+        await base.OnInitializedAsync();
+    }
+
+     protected override async Task OnAfterRenderAsync(bool firstRender)
+     {
+         _messages.Add($"{_days}: {_stopwatch.Elapsed}");
+         await base.OnAfterRenderAsync(firstRender);
+     }
+
+    private void Elapsed(object? sender, ElapsedEventArgs args)
+    {
+        CycleDays();
+        _stopwatch.Restart();
+        InvokeAsync(StateHasChanged);
+    }
+
+    private void CycleDays()
+    {
+        _days = _days switch
+        {
+            1 => 7,
+            7 => 14,
+            14 => 30,
+            30 => 1,
+            _ => throw new NotImplementedException()
+        };
+    }
+
+    private static string GetColor(short status)
+    {
+        return status switch
+        {
+            16 => "gray",
+            17 => "blue",
+            18 => "green",
+            19 => "yellow",
+            20 => "red",
+            _ => throw new NotImplementedException()
+        };
+    }
+
+}
