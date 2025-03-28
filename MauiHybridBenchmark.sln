@@ -1,12 +1,14 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.14.35906.104 d17.14
+VisualStudioVersion = 17.14.35906.104
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MauiHybridBenchmark", "MauiHybridBenchmark\MauiHybridBenchmark.csproj", "{EE939CF1-778C-46FB-90BE-821E141B600D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MauiHybridBenchmark.Shared", "MauiHybridBenchmark.Shared\MauiHybridBenchmark.Shared.csproj", "{EF7A4381-15B0-4E5F-984C-1A56754EB4D8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MauiHybridBenchmark.Web", "MauiHybridBenchmark.Web\MauiHybridBenchmark.Web.csproj", "{A1B25234-D1DD-42C1-88CE-B9B2B39EB198}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MauiHybridBenchmark.Wasm", "MauiHybridBenchmark.Wasm\MauiHybridBenchmark.Wasm.csproj", "{CD67046D-29CC-459C-A29C-83EE1107FAAB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -26,6 +28,10 @@ Global
 		{A1B25234-D1DD-42C1-88CE-B9B2B39EB198}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A1B25234-D1DD-42C1-88CE-B9B2B39EB198}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A1B25234-D1DD-42C1-88CE-B9B2B39EB198}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CD67046D-29CC-459C-A29C-83EE1107FAAB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CD67046D-29CC-459C-A29C-83EE1107FAAB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CD67046D-29CC-459C-A29C-83EE1107FAAB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CD67046D-29CC-459C-A29C-83EE1107FAAB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
