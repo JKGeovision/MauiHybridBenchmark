@@ -12,6 +12,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MauiHybridBenchmark.Wasm", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MauiHybridBenchmark.Winforms", "MauiHybridBenchmark.Winforms\MauiHybridBenchmark.Winforms.csproj", "{58D19452-451C-440E-9758-7C57CB0EB910}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MauiHybridBenchmark.Wpf", "MauiHybridBenchmark.Wpf\MauiHybridBenchmark.Wpf.csproj", "{C4E683B0-0359-468B-A081-E6C13F5D5B23}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -40,6 +42,10 @@ Global
 		{58D19452-451C-440E-9758-7C57CB0EB910}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{58D19452-451C-440E-9758-7C57CB0EB910}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{58D19452-451C-440E-9758-7C57CB0EB910}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C4E683B0-0359-468B-A081-E6C13F5D5B23}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C4E683B0-0359-468B-A081-E6C13F5D5B23}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C4E683B0-0359-468B-A081-E6C13F5D5B23}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C4E683B0-0359-468B-A081-E6C13F5D5B23}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
